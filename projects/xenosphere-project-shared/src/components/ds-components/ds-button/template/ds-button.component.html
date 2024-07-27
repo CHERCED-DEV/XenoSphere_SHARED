@@ -1,0 +1,43 @@
+<ng-container *ngIf="config && config.label">
+  <button class="btn btn--{{ config.layout.style }} btn--{{ config.layout.size }}"
+    [id]="config.id"
+    [ngClass]="{
+      'btn--disabled': isDisabled,
+      'btn--loading': isloading && config.enableLoader && !config.enableToggable,
+      'btn--is-toggable': config.enableToggable && !config.enableLoader,
+    }"
+    [attr.aria-label]="config.ariaProps?.ariaLabel"
+    [attr.aria-controls]="config.ariaProps?.ariaControls"
+    [attr.aria-labelledby]="config.ariaProps?.ariaLabelledBy"
+    [attr.aria-describedby]="config.ariaProps?.ariaDescribedBy"
+    [disabled]="isDisabled"
+    (click)="handleClick()">
+
+    <ng-container *ngIf="config.icon && config.icon.position === IconPosition.LEFT">
+      <ng-container [ngTemplateOutlet]="iconTemplate"></ng-container>
+    </ng-container>
+
+      <span class="btn_label"
+        [ngClass]="{'btn_label--togleed': isToggleable && config.enableToggable}">
+        <ng-container *ngIf="!config.enableLoader && !config.enableToggable">
+          {{config.label}}
+        </ng-container>
+        <ng-container *ngIf="config.enableLoader && !config.enableToggable">
+          {{ isloading ? config.loadingText : config.label }}
+        </ng-container>
+        <ng-container *ngIf="!config.enableLoader && config.enableToggable">
+          {{ isToggleable ? toggleableText : config.label }}
+        </ng-container>
+      </span>
+
+    <ng-container *ngIf="config.icon && config.icon.position === IconPosition.RIGHT">
+      <ng-container [ngTemplateOutlet]="iconTemplate"></ng-container>
+    </ng-container>
+  </button>
+</ng-container>
+
+<ng-template #iconTemplate>
+  <ng-container *ngIf="config.icon && config.icon.settings !== undefined">
+    <ds-icon [config]="config.icon.settings"></ds-icon>
+  </ng-container>
+</ng-template>

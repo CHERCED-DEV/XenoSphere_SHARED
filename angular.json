@@ -3,5 +3,41 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "xenosphere-project-shared": {
+      "projectType": "library",
+      "root": "projects/xenosphere-project-shared",
+      "sourceRoot": "projects/xenosphere-project-shared/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xenosphere-project-shared/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xenosphere-project-shared/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xenosphere-project-shared/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xenosphere-project-shared/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "41496a9c-8a5d-4a24-b4f2-1d2161f79595"
   }
 }
