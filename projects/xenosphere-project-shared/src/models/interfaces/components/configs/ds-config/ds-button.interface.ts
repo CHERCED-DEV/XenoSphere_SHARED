@@ -16,7 +16,7 @@ export interface ButtonConfig {
   },
   icon?: {
     settings: IconConfig;
-    position: IconPosition;
+    position?: IconPosition;
   }
   ariaProps?: {
     ariaLabel: string;
