@@ -1,8 +1,12 @@
-<div *ngIf="config"
-  class="ds-icon"
-  [attr.role]="config.role"
-  [attr.aria-label]="config.ariaProps?.ariaLabel"
-  [attr.aria-hidden]="config.ariaProps?.ariaHidden"
-  [attr.aria-describedby]="config.ariaProps?.ariaDescribedby">
-  <img class="ds-icon_img" [src]="config.img.src" [alt]="config.img.alt">
-</div>
+<ng-container *ngIf="config && config.img.src.length > 1">
+  <div class="icon"
+    [attr.role]="config.role"
+    [attr.aria-label]="config.ariaProps?.ariaLabel"
+    [attr.aria-hidden]="config.ariaProps?.ariaHidden"
+    [attr.aria-describedby]="config.ariaProps?.ariaDescribedby">
+      <img class="icon_img"
+        [src]="config.img.src"
+        [alt]="config.img.alt">
+  </div>
+</ng-container>
+
